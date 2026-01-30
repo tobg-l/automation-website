@@ -63,7 +63,6 @@ export const metadata: Metadata = {
     initialScale: 1,
     maximumScale: 1,
   },
-  charset: "utf-8",
 };
 
 export default function RootLayout({
