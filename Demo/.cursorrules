@@ -1,0 +1,54 @@
+# Cursor Rules for Automation Website Demo
+
+## Permission Preferences
+
+When executing commands, prefer to request permissions proactively for common operations:
+
+1. **Network operations**: Always request `network` permission for package installations, API calls, and dependency fetching
+2. **Git operations**: Request `git_write` permission when making commits or pushes (but always show diff first)
+3. **File operations**: Most file operations work without special permissions in the workspace
+
+## Common Operations
+
+### Package Management
+- Always request `network` permission for npm/pip/yarn installs
+- Prefer using package managers over manual downloads
+
+### Git Workflow
+- Show git diff before committing
+- Request `git_write` permission for commits/pushes
+- Never force push without explicit user request
+
+### File Operations
+- Read files before editing them
+- Preserve existing formatting and structure
+- Create backups for significant changes when appropriate
+
+### Terminal Commands
+- Use non-interactive flags when possible (`--yes`, `-y`, etc.)
+- Run long-running processes in background when appropriate
+- Always explain what commands will do before executing
+
+## Security Guidelines
+
+- Never execute destructive operations without explicit user confirmation
+- Always review git changes before committing
+- Be cautious with `all` permission - only use when absolutely necessary
+- Never modify system files outside the workspace without permission
+
+## Workflow Preferences
+
+- Prefer making changes directly rather than just suggesting them
+- Execute commands automatically when permissions are granted
+- Provide clear explanations of what operations are being performed
+- Batch related operations together when possible
+
+## Design Specifications
+
+When creating designs, always reference the design library in `library/` folder:
+- **USON specifications**: Use `library/design-spec-hr-document-tracking.uson` as the design reference
+- **Color palette**: Primary blue (#4461F2), success green (#28a745), danger red (#dc3545)
+- **Typography**: Inter font family, bold sans-serif headings, clean spacing
+- **Layout**: Three-column grid, card-based sections, generous whitespace
+- **Style**: Modern landing page aesthetic inspired by Markova SaaS platform
+- Translate USON specifications into actual CSS/HTML while maintaining the specified visual style

@@ -1,0 +1,366 @@
+@document {
+  format: A4_landscape
+  margins: 40px
+  background: gradient(135deg, #f8f9fa, #e9ecef)
+  font_family: "Inter, -apple-system, sans-serif"
+}
+
+@inspiration {
+  reference: "Markova SaaS platform"
+  style: modern_landing_page
+  characteristics: [
+    clean_spacious_layout
+    bold_sans_serif_typography
+    blue_accent_#4461F2
+    generous_whitespace
+    card_based_sections
+    subtle_shadows
+    professional_gradients
+  ]
+}
+
+@colors {
+  primary_blue: #4461F2
+  primary_blue_dark: #3651d4
+  success_green: #28a745
+  danger_red: #dc3545
+  text_primary: #1a1d29
+  text_secondary: #495057
+  text_muted: #6c757d
+  background_light: #f8f9fa
+  white: #ffffff
+}
+
+@layout {
+  type: three_column_grid
+  columns: {
+    left: 30%
+    center: 40%
+    right: 30%
+  }
+  gap: 24px
+}
+
+@header {
+  position: top_center
+  width: 100%
+  align: center
+  margin_bottom: 60px
+  
+  @badge {
+    text: "DEMO"
+    background: $primary_blue
+    color: $white
+    padding: 8px_20px
+    border_radius: 20px
+    font_size: 14px
+    font_weight: 600
+    display: inline_block
+    margin_bottom: 20px
+  }
+  
+  @title {
+    text: "HR Document Expiration Tracking"
+    font_size: 48px
+    font_weight: 700
+    color: $text_primary
+    letter_spacing: -0.02em
+    margin_bottom: 16px
+  }
+  
+  @subtitle {
+    text: "What this system does: Automatically checks employee documents, finds what's missing or expiring, and sends a clear weekly report - without manual work."
+    font_size: 18px
+    color: $text_muted
+    line_height: 1.6
+    max_width: 900px
+    margin: 0_auto
+  }
+}
+
+@section[problem] {
+  position: left_column
+  
+  @card {
+    background: $white
+    border_radius: 16px
+    padding: 32px
+    box_shadow: 0_4px_20px_rgba(0,0,0,0.06)
+    height: fit_content
+  }
+  
+  @badge {
+    text: "The Problem"
+    background: $danger_red
+    color: $white
+    padding: 6px_16px
+    border_radius: 20px
+    font_size: 13px
+    font_weight: 600
+    display: inline_block
+    margin_bottom: 20px
+  }
+  
+  @paragraph {
+    text: "HR had to manually review large Excel files every week to check passports, medical certificates, and other mandatory documents."
+    font_size: 16px
+    color: $text_secondary
+    line_height: 1.7
+    margin_bottom: 20px
+  }
+  
+  @subheading {
+    text: "This process was:"
+    font_size: 15px
+    font_weight: 600
+    color: $text_primary
+    margin_bottom: 12px
+  }
+  
+  @list {
+    type: bullet
+    bullet_color: $danger_red
+    bullet_size: 6px
+    spacing: 8px
+    
+    @items {
+      "time-consuming"
+      "easy to get wrong"
+      "stressful close to deadlines"
+      "risky for compliance"
+    }
+    
+    style: {
+      font_size: 15px
+      color: $text_secondary
+      line_height: 1.8
+      padding_left: 20px
+    }
+  }
+  
+  @footer_text {
+    text: "Missing one document could stop operations."
+    font_size: 15px
+    font_style: italic
+    color: $text_muted
+    font_weight: 500
+    margin_top: 16px
+  }
+}
+
+@section[solution] {
+  position: center_column
+  
+  @card {
+    background: gradient(135deg, $primary_blue, $primary_blue_dark)
+    border_radius: 20px
+    padding: 40px
+    box_shadow: 0_8px_32px_rgba(68,97,242,0.25)
+    height: fit_content
+  }
+  
+  @badge {
+    text: "The Solution"
+    background: rgba(255,255,255,0.2)
+    border: 1px_solid_rgba(255,255,255,0.3)
+    color: $white
+    padding: 6px_16px
+    border_radius: 20px
+    font_size: 13px
+    font_weight: 600
+    display: inline_block
+    margin_bottom: 24px
+  }
+  
+  @intro {
+    text: "A fully automated system that:"
+    font_size: 18px
+    font_weight: 600
+    color: $white
+    margin_bottom: 20px
+  }
+  
+  @list {
+    type: checkmark
+    icon: "✓"
+    icon_style: {
+      background: rgba(255,255,255,0.2)
+      border_radius: 50%
+      padding: 4px
+      margin_right: 12px
+      display: inline_flex
+      align_items: center
+      justify_content: center
+      width: 24px
+      height: 24px
+    }
+    spacing: 14px
+    
+    @items {
+      "reads the latest HR spreadsheet"
+      "checks all document expiration dates"
+      "Flags missing and expiring documents (30-day warning)"
+      "Applies rules based on employee role"
+      "Highlights expired items in red in Excel"
+      "Sends a structured email report automatically"
+    }
+    
+    style: {
+      font_size: 16px
+      color: $white
+      line_height: 1.9
+      font_weight: 400
+    }
+  }
+  
+  @footer_box {
+    text: "Runs automatically on schedule. No manual effort required."
+    background: rgba(255,255,255,0.15)
+    border_radius: 12px
+    padding: 16px
+    font_size: 16px
+    font_weight: 600
+    color: $white
+    text_align: center
+    margin_top: 24px
+  }
+}
+
+@section[results] {
+  position: right_column
+  layout: vertical_stack
+  gap: 20px
+  
+  @card[time_savings] {
+    background: $white
+    border_radius: 16px
+    padding: 28px
+    box_shadow: 0_4px_20px_rgba(0,0,0,0.06)
+    
+    @badge {
+      text: "Result"
+      background: $success_green
+      color: $white
+      padding: 6px_16px
+      border_radius: 20px
+      font_size: 13px
+      font_weight: 600
+      display: inline_block
+      margin_bottom: 20px
+    }
+    
+    @metrics {
+      spacing: 20px
+      
+      @metric[1] {
+        @value {
+          text: "20–28 hours"
+          font_size: 28px
+          font_weight: 700
+          color: $success_green
+          line_height: 1.2
+        }
+        @label {
+          text: "saved per month"
+          font_size: 14px
+          color: $text_muted
+        }
+      }
+      
+      @metric[2] {
+        @value {
+          text: "260+ hours"
+          font_size: 28px
+          font_weight: 700
+          color: $success_green
+          line_height: 1.2
+        }
+        @label {
+          text: "saved per year"
+          font_size: 14px
+          color: $text_muted
+        }
+        @sublabel {
+          text: "$3,900-$4,500 in labor cost savings"
+          font_size: 13px
+          color: #868e96
+          font_style: italic
+          margin_top: 4px
+        }
+      }
+      
+      @metric[3] {
+        @value {
+          text: "~7.5 weeks"
+          font_size: 28px
+          font_weight: 700
+          color: $success_green
+          line_height: 1.2
+        }
+        @label {
+          text: "equivalent in work time"
+          font_size: 14px
+          color: $text_muted
+        }
+      }
+    }
+  }
+  
+  @card[reliability] {
+    background: $white
+    border_radius: 16px
+    padding: 28px
+    box_shadow: 0_4px_20px_rgba(0,0,0,0.06)
+    
+    @badge {
+      text: "Reliability & Risk Reduction"
+      background: $primary_blue
+      color: $white
+      padding: 6px_16px
+      border_radius: 20px
+      font_size: 13px
+      font_weight: 600
+      display: inline_block
+      margin_bottom: 16px
+    }
+    
+    @list {
+      type: checkmark
+      icon: "✓"
+      icon_color: $primary_blue
+      spacing: 10px
+      
+      @items {
+        "Never forgets an employee or document"
+        "No calculation mistakes"
+        "Always delivered on time"
+        "Creates a clear audit trail"
+        "Scales easily as the team grows"
+      }
+      
+      style: {
+        font_size: 14px
+        color: $text_secondary
+        line_height: 1.8
+      }
+    }
+  }
+}
+
+@typography {
+  headings: {
+    font_weight: 700
+    letter_spacing: -0.02em
+  }
+  body: {
+    font_weight: 400
+    letter_spacing: normal
+  }
+}
+
+@responsive {
+  print: {
+    optimize_for: quality
+    ensure: single_page
+  }
+}

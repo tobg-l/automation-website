@@ -1,0 +1,188 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+:root {
+  --background: #000000;
+  --foreground: #ffffff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  color: var(--foreground);
+  /* LAYER 1: Base gradient */
+  background: linear-gradient(
+    to bottom,
+    #0d0d0d 0%,
+    #000000 25%,
+    #000000 75%,
+    #0a0a0a 100%
+  );
+  background-attachment: fixed; /* Keep gradient fixed while scrolling */
+  font-family: var(--font-inter), Inter, -apple-system, BlinkMacSystemFont, 'SF Pro', 'Segoe UI', Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh; /* Ensure gradient covers full viewport height */
+}
+
+@layer components {
+  /* Glass card effect */
+  .glass-card {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  /* Glow effect - subtle blue/cyan glow */
+  .glow-effect {
+    box-shadow: 0 0 20px rgba(26, 35, 50, 0.2), 0 0 40px rgba(26, 51, 56, 0.15);
+  }
+
+  /* Text gradient - white to gray */
+  .text-gradient {
+    background: linear-gradient(180deg, #ffffff 0%, #a3a3a3 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Responsive optimizations */
+@media (max-width: 640px) {
+  /* Prevent horizontal scroll */
+  body {
+    overflow-x: hidden;
+  }
+  
+  /* Ensure touch targets are at least 44x44px */
+  button,
+  a,
+  input,
+  select,
+  textarea {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Improve form inputs on mobile */
+  input,
+  select,
+  textarea {
+    font-size: 16px; /* Prevents zoom on iOS */
+  }
+}
+
+/* Smooth transitions for all interactive elements */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Focus visible for accessibility - WCAG AA compliant */
+:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Skip to main content link */
+.skip-to-main {
+  position: absolute;
+  top: -100px;
+  left: 0;
+  z-index: 100;
+  padding: 1rem 2rem;
+  background: #ffffff;
+  color: #000000;
+  text-decoration: none;
+  font-weight: 600;
+  border-radius: 0 0 4px 0;
+}
+
+.skip-to-main:focus {
+  top: 0;
+  outline: 2px solid #000000;
+  outline-offset: 2px;
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* GPU-accelerated transforms */
+.gpu-accelerated {
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+/* Optimize animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translate3d(0, 20px, 0);
+    opacity: 0;
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+}
+
+/* Trust Signal Strip Animation */
+.trust-signal-strip {
+  background: transparent;
+}
+
+.trust-signal-strip:hover .trust-signal-content {
+  animation-play-state: paused;
+}
+
+.trust-signal-content {
+  animation: scroll-trust-signal 30s linear infinite;
+}
+
+@keyframes scroll-trust-signal {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+

@@ -1,0 +1,85 @@
+{
+  "colors": {
+    "black": {
+      "000": "#000000",
+      "010": "#0a0a0a",
+      "020": "#0f0f0f",
+      "030": "#151515"
+    },
+    "foreground": {
+      "white": "#ffffff",
+      "light": "#a3a3a3",
+      "medium": "#6b6b6b",
+      "dark": "#404040"
+    },
+    "accent": {
+      "blue": {
+        "base": "#1a2332",
+        "10": "rgba(26, 35, 50, 0.1)",
+        "20": "rgba(26, 35, 50, 0.2)",
+        "30": "rgba(26, 35, 50, 0.3)",
+        "40": "rgba(26, 35, 50, 0.4)",
+        "50": "rgba(26, 35, 50, 0.5)",
+        "60": "rgba(26, 35, 50, 0.6)",
+        "70": "rgba(26, 35, 50, 0.7)",
+        "80": "rgba(26, 35, 50, 0.8)",
+        "90": "rgba(26, 35, 50, 0.9)"
+      },
+      "cyan": {
+        "base": "#1a3338",
+        "10": "rgba(26, 51, 56, 0.1)",
+        "20": "rgba(26, 51, 56, 0.2)",
+        "30": "rgba(26, 51, 56, 0.3)",
+        "40": "rgba(26, 51, 56, 0.4)",
+        "50": "rgba(26, 51, 56, 0.5)",
+        "60": "rgba(26, 51, 56, 0.6)",
+        "70": "rgba(26, 51, 56, 0.7)",
+        "80": "rgba(26, 51, 56, 0.8)",
+        "90": "rgba(26, 51, 56, 0.9)"
+      }
+    }
+  },
+  "fonts": {
+    "primary": {
+      "family": "Inter, -apple-system, BlinkMacSystemFont, 'SF Pro', 'Segoe UI', Roboto, sans-serif",
+      "fallback": "sans-serif"
+    },
+    "display": {
+      "family": "'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+      "fallback": "sans-serif"
+    },
+    "mono": {
+      "family": "'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, monospace",
+      "fallback": "monospace"
+    }
+  },
+  "typography": {
+    "hero": "clamp(2.5rem, 8vw, 6rem)",
+    "h1": "clamp(2rem, 5vw, 3.5rem)",
+    "h2": "clamp(1.75rem, 4vw, 2.5rem)",
+    "h3": "clamp(1.5rem, 3vw, 2rem)",
+    "h4": "clamp(1.25rem, 2.5vw, 1.5rem)",
+    "body": "clamp(1rem, 2vw, 1.125rem)",
+    "small": "clamp(0.875rem, 1.5vw, 1rem)"
+  },
+  "spacing": {
+    "base": "8px",
+    "scale": [0, 0.5, 1, 1.5, 2, 2.5, 3, 4, 5, 6, 8, 10, 12, 16, 20, 24, 32, 40, 48, 56, 64]
+  },
+  "effects": {
+    "glass": {
+      "backdrop": "blur(12px)",
+      "background": "rgba(255, 255, 255, 0.05)",
+      "border": "1px solid rgba(255, 255, 255, 0.1)"
+    },
+    "glow": {
+      "blue": "0 0 20px rgba(26, 35, 50, 0.3), 0 0 40px rgba(26, 35, 50, 0.2)",
+      "cyan": "0 0 20px rgba(26, 51, 56, 0.3), 0 0 40px rgba(26, 51, 56, 0.2)",
+      "combined": "0 0 20px rgba(26, 35, 50, 0.2), 0 0 40px rgba(26, 51, 56, 0.15)"
+    },
+    "gradient": {
+      "text": "linear-gradient(180deg, #ffffff 0%, #a3a3a3 100%)"
+    }
+  }
+}
+

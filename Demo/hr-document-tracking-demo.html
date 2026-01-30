@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HR Document Expiration Tracking - Demo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @page {
+            size: A4;
+            margin: 0;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: 
+                radial-gradient(
+                    ellipse 1000px 800px at top left,
+                    rgba(180, 195, 255, 0.7) 0%,
+                    rgba(200, 210, 255, 0.4) 40%,
+                    transparent 70%
+                ),
+                radial-gradient(
+                    ellipse 1100px 900px at bottom right,
+                    rgba(160, 185, 255, 0.6) 0%,
+                    rgba(180, 200, 255, 0.35) 40%,
+                    transparent 70%
+                ),
+                linear-gradient(
+                    135deg,
+                    #E0E6F5 0%,
+                    #E8EBF7 30%,
+                    #EEF0F8 60%,
+                    #E5E9F5 100%
+                );
+            padding: 30px;
+            width: 210mm; /* A4 portrait width */
+            min-height: 100vh;
+            color: #1a1d29;
+            line-height: 1.5;
+            position: relative;
+            /* NO overflow:hidden - allow scrolling in browser */
+        }
+
+        /* Subtle grid overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.4) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.4) 1px, transparent 1px);
+            background-size: 80px 80px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 210mm;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Header Section */
+        .header {
+            text-align: center;
+            width: 100%;
+            margin-bottom: 20px; /* Reduced from 30px */
+            margin-left: 2.5%; /* Shift header left by 5% for better alignment */
+            flex-shrink: 0;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 16px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 12px; /* Reduced */
+        }
+
+        .badge-demo {
+            background: #4461F2;
+            color: #ffffff;
+        }
+
+        .header-title {
+            font-size: 42px; /* Reduced from 48px */
+            font-weight: 700;
+            color: #1a1d29;
+            letter-spacing: -0.02em;
+            margin-bottom: 12px; /* Reduced */
+            line-height: 1.2;
+        }
+
+        .header-subtitle {
+            font-size: 16px; /* Reduced from 18px */
+            color: #6c757d;
+            line-height: 1.5;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* Three Column Grid */
+        .content-grid {
+            display: grid;
+            grid-template-columns: 30% 40% 30%;
+            gap: 20px; /* Reduced from 24px */
+            margin-bottom: 15px; /* Space before email section */
+        }
+
+        /* Card Styles */
+        .card {
+            background: #ffffff;
+            border-radius: 14px;
+            padding: 20px; /* Reduced from 32px */
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.06);
+            height: fit-content;
+        }
+
+        /* Problem card - increased bottom padding for height balance */
+        .card:first-child {
+            padding-bottom: 72px;
+        }
+
+        .card-hero {
+            background: linear-gradient(135deg, #4461F2, #3651d4);
+            border-radius: 16px;
+            padding: 24px; /* Reduced from 40px */
+            box-shadow: 0 6px 24px rgba(68, 97, 242, 0.25);
+            color: #ffffff;
+        }
+
+        .badge-problem {
+            background: #dc3545;
+            color: #ffffff;
+            padding: 5px 12px;
+            border-radius: 16px;
+            font-size: 12px;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 14px; /* Reduced */
+        }
+
+        .badge-solution {
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: #ffffff;
+            padding: 5px 12px;
+            border-radius: 16px;
+            font-size: 12px;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 16px; /* Reduced */
+        }
+
+        .badge-result {
+            background: #28a745;
+            color: #ffffff;
+            padding: 5px 12px;
+            border-radius: 16px;
+            font-size: 12px;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 14px; /* Reduced */
+        }
+
+        .badge-reliability {
+            background: #4461F2;
+            color: #ffffff;
+            padding: 5px 12px;
+            border-radius: 16px;
+            font-size: 12px;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 12px; /* Reduced */
+        }
+
+        /* Problem Section */
+        .problem-text {
+            font-size: 14px; /* Reduced from 16px */
+            color: #495057;
+            line-height: 1.6;
+            margin-bottom: 14px; /* Reduced */
+        }
+
+        .subheading {
+            font-size: 13px; /* Reduced from 15px */
+            font-weight: 600;
+            color: #1a1d29;
+            margin-bottom: 10px; /* Reduced */
+        }
+
+        .bullet-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .bullet-list li {
+            font-size: 13px; /* Reduced from 15px */
+            color: #495057;
+            line-height: 1.7;
+            padding-left: 18px;
+            margin-bottom: 12px; /* Increased spacing */
+            position: relative;
+        }
+
+        .bullet-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 8px;
+            width: 5px;
+            height: 5px;
+            background: #dc3545;
+            border-radius: 50%;
+        }
+
+        .footer-text {
+            font-size: 13px; /* Reduced from 15px */
+            font-style: italic;
+            color: #6c757d;
+            font-weight: 500;
+            margin-top: 16px; /* Increased */
+            margin-bottom: 48px; /* Increased for extra height */
+            line-height: 1.6;
+        }
+
+        /* Highlighted box for bullet list */
+        .highlighted-box {
+            background: #FFF5F5; /* Light red/pink background */
+            border-radius: 8px;
+            padding: 16px;
+            margin-top: 12px; /* Space above box */
+            margin-bottom: 12px; /* Space below box */
+        }
+
+        /* Solution Section */
+        .solution-intro {
+            font-size: 16px; /* Reduced from 18px */
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 14px; /* Reduced */
+        }
+
+        .checkmark-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .checkmark-list li {
+            font-size: 14px; /* Reduced from 16px */
+            color: #ffffff;
+            line-height: 1.7;
+            margin-bottom: 10px; /* Reduced from 14px */
+            padding-left: 30px; /* Reduced from 36px */
+            position: relative;
+        }
+
+        .checkmark-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 20px; /* Reduced from 24px */
+            height: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px; /* Reduced */
+            font-weight: 600;
+        }
+
+        .footer-box {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 10px;
+            padding: 12px; /* Reduced from 16px */
+            font-size: 14px; /* Reduced from 16px */
+            font-weight: 600;
+            color: #ffffff;
+            text-align: center;
+            margin-top: 16px; /* Reduced from 24px */
+        }
+
+        /* Results Section */
+        .results-column {
+            display: flex;
+            flex-direction: column;
+            gap: 16px; /* Reduced from 20px */
+        }
+
+        .card-results {
+            padding: 20px; /* Reduced from 28px */
+        }
+
+        .metrics {
+            display: flex;
+            flex-direction: column;
+            gap: 12px; /* Reduced from 20px */
+        }
+
+        .metric {
+            margin-bottom: 0;
+        }
+
+        .metric-value {
+            font-size: 24px; /* Reduced from 28px */
+            font-weight: 700;
+            color: #28a745;
+            line-height: 1.2;
+            margin-bottom: 3px;
+        }
+
+        .metric-label {
+            font-size: 12px; /* Reduced from 14px */
+            color: #6c757d;
+        }
+
+        .metric-sublabel {
+            font-size: 11px; /* Reduced from 13px */
+            color: #868e96;
+            font-style: italic;
+            margin-top: 3px;
+        }
+
+        .reliability-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .reliability-list li {
+            font-size: 11px; /* Reduced from 14px */
+            color: #495057;
+            line-height: 1.6;
+            padding-left: 22px;
+            margin-bottom: 6px; /* Reduced from 10px */
+            position: relative;
+        }
+
+        .reliability-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: #4461F2;
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        /* Email Preview Section - Horizontal Strip */
+        .email-preview-strip {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            width: 105%;
+            margin-top: 10px;
+            margin-left: 0px;
+        }
+
+        .email-info {
+            flex: 1.2;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .badge-automated {
+            background: linear-gradient(135deg, #4461F2, #3651d4);
+            color: #ffffff;
+            padding: 6px 14px;
+            border-radius: 16px;
+            font-size: 11px;
+            font-weight: 600;
+            display: inline-block;
+            width: fit-content;
+        }
+
+        .email-info-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #1a1d29;
+            margin: 0;
+        }
+
+        .email-info-text {
+            font-size: 14px;
+            color: #6c757d;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        .email-contents {
+            margin-top: 8px;
+        }
+
+        .email-contents-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: #1a1d29;
+            margin-bottom: 8px;
+        }
+
+        .email-contents-list {
+            list-style: none;
+            padding-left: 0;
+            margin: 0;
+        }
+
+        .email-contents-list li {
+            font-size: 13px;
+            color: #495057;
+            line-height: 1.7;
+            margin-bottom: 8px;
+            padding-left: 16px;
+            position: relative;
+        }
+
+        .email-contents-list li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #495057;
+            font-weight: 600;
+        }
+
+        .email-screenshot-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .email-screenshot {
+            position: relative;
+        }
+
+        .email-screenshot embed,
+        .email-screenshot object,
+        .email-screenshot iframe {
+            max-height: 400px;
+            max-width: 100%;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            object-fit: contain;
+            display: block;
+        }
+
+        .email-screenshot embed {
+            width: auto;
+            height: 400px;
+        }
+
+        .email-screenshot object {
+            width: auto;
+            height: 400px;
+        }
+
+        .email-screenshot iframe {
+            width: auto;
+            height: 400px;
+            border: none;
+        }
+
+        .excel-icon {
+            position: absolute;
+            bottom: -15px;
+            left: -15px;
+            width: 40px;
+            height: 40px;
+            z-index: 10;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+            border-radius: 4px;
+            background: #ffffff;
+            padding: 2px;
+        }
+
+        .excel-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+        }
+
+        /* Print Styles */
+        @media print {
+            @page {
+                size: A4;
+                margin: 0;
+            }
+
+            body {
+                background: white !important;
+                print-color-adjust: exact;
+                -webkit-print-color-adjust: exact;
+                width: 210mm;
+                height: 297mm;
+                padding: 30px;
+                overflow: hidden; /* Only hide overflow in print */
+            }
+
+            body::before {
+                display: none;
+            }
+
+            .container {
+                width: 100%;
+                height: 100%;
+                max-height: 297mm;
+            }
+
+            * {
+                page-break-inside: avoid;
+            }
+
+            .card {
+                break-inside: avoid;
+                page-break-inside: avoid;
+            }
+
+            .content-grid {
+                break-inside: avoid;
+            }
+
+            .email-preview-strip {
+                break-inside: avoid;
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <span class="badge badge-demo">DEMO</span>
+            <h1 class="header-title">HR Document Expiration Tracking</h1>
+            <p class="header-subtitle">What this system does: Automatically checks employee documents, finds what's missing or expiring, and sends a clear weekly report - without manual work.</p>
+        </header>
+
+        <!-- Three Column Grid -->
+        <div class="content-grid">
+                <!-- Left Column - Problem -->
+                <section class="card">
+                    <span class="badge-problem">The Problem</span>
+                    <p class="problem-text">HR had to manually review large Excel files every week to check passports, medical certificates, and other mandatory documents.</p>
+                    <p class="subheading">This process was:</p>
+                    <div class="highlighted-box">
+                        <ul class="bullet-list">
+                            <li>time-consuming</li>
+                            <li>easy to get wrong</li>
+                            <li>stressful close to deadlines</li>
+                            <li>risky for compliance</li>
+                        </ul>
+                    </div>
+                    <p class="footer-text">Missing one document could stop operations.</p>
+                </section>
+
+            <!-- Center Column - Solution -->
+            <section class="card-hero">
+                <span class="badge-solution">The Solution</span>
+                <p class="solution-intro">A fully automated system that:</p>
+                <ul class="checkmark-list">
+                    <li>reads the latest HR spreadsheet</li>
+                    <li>checks all document expiration dates</li>
+                    <li>Flags missing and expiring documents (30-day warning)</li>
+                    <li>Applies rules based on employee role</li>
+                    <li>Highlights expired items in red in Excel</li>
+                    <li>Sends a structured email report automatically</li>
+                </ul>
+                <div class="footer-box">Runs automatically on schedule. No manual effort required.</div>
+            </section>
+
+            <!-- Right Column - Results -->
+            <div class="results-column">
+                <!-- Time Savings Card -->
+                <section class="card card-results">
+                    <span class="badge-result">Result</span>
+                    <div class="metrics">
+                        <div class="metric">
+                            <div class="metric-value">20–28 hours</div>
+                            <div class="metric-label">saved per month</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">260+ hours</div>
+                            <div class="metric-label">saved per year</div>
+                            <div class="metric-sublabel">$3,900-$4,500 in labor cost savings</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">~7.5 weeks</div>
+                            <div class="metric-label">equivalent in work time</div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Reliability Card -->
+                <section class="card card-results">
+                    <span class="badge-reliability">Reliability & Risk Reduction</span>
+                    <ul class="reliability-list">
+                        <li>Never forgets an employee or document</li>
+                        <li>No calculation mistakes</li>
+                        <li>Always delivered on time</li>
+                        <li>Creates a clear audit trail</li>
+                        <li>Scales easily as the team grows</li>
+                    </ul>
+                </section>
+            </div>
+        </div>
+
+        <!-- Email Preview Strip - Separate Bottom Section -->
+        <section class="email-preview-strip">
+            <div class="email-info">
+                <span class="badge badge-automated">Automated Output</span>
+                <h3 class="email-info-title">Weekly Email Report Example</h3>
+                <p class="email-info-text">Every week, Polina receives a formatted HTML email with expired/expiring documents organized by priority, plus the modified Excel file with red highlighting.</p>
+                <div class="email-contents">
+                    <div class="email-contents-title">Email Contents:</div>
+                    <ul class="email-contents-list">
+                        <li>Organized by employee location (Kumtor, Reserve)</li>
+                        <li>Expiring documents with specific dates (30-day warning)</li>
+                        <li>Priority documents: passports, medical certificates, criminal record checks</li>
+                        <li>Missing documents section highlighted in red</li>
+                        <li>Secondary requirements: driving training, safety training</li>
+                        <li>Color-coded by urgency and document type</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="email-screenshot-container">
+                <div class="email-screenshot">
+                    <object data="Untitled_Artwork.pdf" type="application/pdf">
+                        <iframe src="Untitled_Artwork.pdf"></iframe>
+                    </object>
+                    <div class="excel-icon">
+                        <img src="ms-excel-office-file-icon-free-png.webp" alt="Excel attachment" />
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+</html>
