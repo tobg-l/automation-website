@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 
 interface SectionHeaderProps {
   badge?: string;
-  badgeIcon?: React.ComponentType<{ size?: number; className?: string }>;
+  badgeIcon?: any;
   heading: ReactNode;
   subheading?: string;
   className?: string;

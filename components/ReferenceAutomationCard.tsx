@@ -12,7 +12,7 @@ import {
 import Card from "./ui/Card";
 
 interface ReferenceAutomation {
-  icon: React.ComponentType<{ size?: number; className?: string }>;
+  icon: any;
   badge: string;
   title: string;
   type: string;
