@@ -40,7 +40,7 @@ export default function ContactHero() {
               lineHeight: "1.7",
             }}
           >
-            If you have a repetitive process that's consuming time or causing errors, I can help you evaluate whether automation is the right solution. Start by sharing details about your workflow, or book a discovery call to discuss your needs.
+            If you have a repetitive process that&apos;s consuming time or causing errors, I can help you evaluate whether automation is the right solution. Start by sharing details about your workflow, or book a discovery call to discuss your needs.
           </p>
         </motion.div>
       </div>

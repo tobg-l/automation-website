@@ -155,7 +155,7 @@ export default function WhyWorkWithMe() {
             maxWidth: "700px",
           }}
         >
-          You don't get a demo. You get a system that actually runs.
+          You don&apos;t get a demo. You get a system that actually runs.
         </motion.p>
       </div>
     </section>

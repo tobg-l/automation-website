@@ -123,7 +123,7 @@ export default function MaintenanceSupport() {
                       letterSpacing: "0.05em",
                     }}
                   >
-                    What's NOT Included
+                    What&apos;s NOT Included
                   </h3>
                   <ul className="flex flex-col gap-2">
                     {notIncludedItems.map((item, idx) => (

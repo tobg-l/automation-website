@@ -56,7 +56,7 @@ export default function BookingOption() {
                   lineHeight: "1.7",
                 }}
               >
-                Prefer to discuss your automation needs directly? Book a discovery call to explore whether automation makes sense for your process. We'll discuss your workflow, identify automation opportunities, and determine the best approach.
+                Prefer to discuss your automation needs directly? Book a discovery call to explore whether automation makes sense for your process. We&apos;ll discuss your workflow, identify automation opportunities, and determine the best approach.
               </p>
 
               {/* Calendly Link or Embed Placeholder */}

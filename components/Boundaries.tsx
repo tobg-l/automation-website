@@ -61,7 +61,7 @@ export default function Boundaries() {
                 lineHeight: "1.3",
               }}
             >
-              What I <em className="italic">Don't</em> Do
+              What I <em className="italic">Don&apos;t</em> Do
             </h2>
             <p
               className="text-foreground-light"

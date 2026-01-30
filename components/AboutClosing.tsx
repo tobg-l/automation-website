@@ -46,7 +46,7 @@ export default function AboutClosing() {
                   lineHeight: "1.6",
                 }}
               >
-                If you need a workflow that replaces repetitive work — not another tool to manage — we'll work well together.
+                If you need a workflow that replaces repetitive work — not another tool to manage — we&apos;ll work well together.
               </p>
 
               {/* CTA Button */}

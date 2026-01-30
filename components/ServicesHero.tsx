@@ -67,7 +67,7 @@ export default function ServicesHero() {
                 lineHeight: "1.8",
               }}
             >
-              Most automation problems are not technical. They're architectural.
+              Most automation problems are not technical. They&apos;re architectural.
             </p>
 
             <p

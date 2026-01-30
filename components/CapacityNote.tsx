@@ -48,7 +48,7 @@ export default function CapacityNote() {
                     lineHeight: "1.7",
                   }}
                 >
-                  I work with a limited number of projects at a time to ensure fast delivery and high-quality systems. If you're ready to move forward, I recommend booking a discovery call or submitting an inquiry soon.
+                  I work with a limited number of projects at a time to ensure fast delivery and high-quality systems. If you&apos;re ready to move forward, I recommend booking a discovery call or submitting an inquiry soon.
                 </p>
               </div>
             </div>

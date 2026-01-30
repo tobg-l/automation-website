@@ -41,7 +41,7 @@ export default function Background() {
                 lineHeight: "1.7",
               }}
             >
-              I've spent years working with operational systems and seeing firsthand how manual processes create bottlenecks, errors, and frustration. The problem isn't usually a lack of tools — it's a lack of clear automation architecture.
+              I&apos;ve spent years working with operational systems and seeing firsthand how manual processes create bottlenecks, errors, and frustration. The problem isn&apos;t usually a lack of tools — it&apos;s a lack of clear automation architecture.
             </p>
 
             <p
@@ -52,7 +52,7 @@ export default function Background() {
                 lineHeight: "1.7",
               }}
             >
-              My approach focuses on understanding the actual problem before proposing solutions. I map processes end-to-end, identify what should be automated (and what shouldn't), and then design systems that are reliable and maintainable.
+              My approach focuses on understanding the actual problem before proposing solutions. I map processes end-to-end, identify what should be automated (and what shouldn&apos;t), and then design systems that are reliable and maintainable.
             </p>
 
             <p
@@ -63,7 +63,7 @@ export default function Background() {
                 lineHeight: "1.7",
               }}
             >
-              I work with businesses that value clarity and reliability over complexity. If you need a workflow that replaces repetitive work — not another tool to manage — we'll work well together.
+              I work with businesses that value clarity and reliability over complexity. If you need a workflow that replaces repetitive work — not another tool to manage — we&apos;ll work well together.
             </p>
           </div>
         </motion.div>

@@ -112,7 +112,7 @@ export default function WhatIAutomate() {
           badge="SERVICES"
           heading={
             <>
-              Most businesses don't need more tools. They need{" "}
+              Most businesses don&apos;t need more tools. They need{" "}
               <em className="italic">fewer manual steps</em>.
             </>
           }

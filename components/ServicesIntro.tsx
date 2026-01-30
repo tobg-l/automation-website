@@ -39,7 +39,7 @@ export default function ServicesIntro() {
               lineHeight: "1.6",
             }}
           >
-            Automation works best when the scope is clear. That's why I offer three structured ways to work together.
+            Automation works best when the scope is clear. That&apos;s why I offer three structured ways to work together.
           </p>
         </motion.div>
       </div>
