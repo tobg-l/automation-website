@@ -2,14 +2,14 @@
 
 import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
-import { Search, Code, Settings } from "lucide-react";
+import { Search, Code, Settings, LucideIcon } from "lucide-react";
 import SectionHeader from "./SectionHeader";
 import Card from "./ui/Card";
 import IconContainer from "./ui/IconContainer";
 
 interface Step {
   number: string;
-  icon: React.ComponentType<{ size?: number; className?: string }>;
+  icon: LucideIcon;
   title: string;
   description: string;
 }
